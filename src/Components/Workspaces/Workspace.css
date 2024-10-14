@@ -1,0 +1,168 @@
+@import url('/src/global.css');
+
+/* Estilos generales */
+body {
+    color: #d1d2d3;
+    margin: 0;
+    padding: 0;
+}
+
+.workspace-main{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+.workspace-main h2{
+    font-size: 18px;
+    color: #f8f8f8;
+    padding: 3px 8px
+}
+
+.workspace-main button{
+    background-color: #611f69;
+    border: none;
+    color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.exit-button:hover {
+    background-color: #b33fc0;
+}
+
+/* Contenedor principal del workspace */
+.workspace-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar (channels) */
+.workspace-container-channels-sidebar {
+    background-color: #251329;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    overflow-y: auto;
+    color: #e3ceebcc;
+    margin-bottom: 10px;
+    border: 1px solid #611f69;
+}
+
+.workspace-container-channels-sidebar h4 {
+    padding: 0 10px;
+    margin: 0 0 10px;
+}
+
+.channel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.channel-list li {
+    display: flex;
+    align-items: center;
+}
+
+.channel-hash {
+    margin-right: 8px;
+}
+
+.workspace-container-channels-sidebar a {
+    color: #d1d2d3;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.workspace-container-channels-sidebar li:hover {
+    background-color: #342439;
+}
+
+.add-channel {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px 12px;
+    border: none;
+    transition: background 0.3s;
+}
+
+.add-channel:hover {
+    background-color: #342439;
+}
+
+
+/* Sección de mensajes */
+.workspace-container-messages {
+    display: flex;
+    flex-direction: column;
+    background-color: #1A1D21;
+    padding: 20px;
+    overflow-y: auto;
+    border-top: 1px solid #611f69;
+    width: 100%;
+    border-radius: 100px;
+}
+
+
+/* Input para mensajes nuevos */
+.new-message-input {
+    background-color: #40444b;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    color: #d1d2d3;
+    margin-top: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.new-message-input::placeholder {
+    color: #b9bbbe;
+}
+
+/* Botón de enviar */
+.new-message-button {
+    background-color: #7289da;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.new-message-button:hover {
+    background-color: #5b6eaa;
+}
+
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #2f3136;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+}
