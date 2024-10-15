@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { validateChannel } from '../../validations/validationsCH'
 import useWS from '../../hooks/useWS'  // Importar el hook personalizado
+import './CreateCH.css'
 
 const CreateCH = ({ workspaceID }) => {
     const [newChannel, setNewChannel] = useState(false)
-    const [channelName, setChannelName] = useState('#')
+    const [channelName, setChannelName] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
     // Usar el hook para obtener los workspaces y el estado de carga
@@ -27,7 +28,7 @@ const CreateCH = ({ workspaceID }) => {
         // Si la validación es correcta, continúa con la creación
         setErrorMessage('')
         console.log(`Creating channel: ${channelName}`)
-        
+
         // Buscar el workspace al que se le agregará el canal
         const updatedWorkspaces = workspaces.map((workspace) => {
             if (workspace.id === workspaceID) {
@@ -49,36 +50,52 @@ const CreateCH = ({ workspaceID }) => {
         localStorage.setItem('workspaces', JSON.stringify(updatedWorkspaces))
 
         // Resetear el formulario
-        setChannelName('#')
+        setChannelName('')
         setNewChannel(false)
     }
 
-    // Mostrar un mensaje mientras los workspaces se están cargando
+    // Mostrar un mensaje mientras los canales se están cargando
     if (isLoading) {
-        return <p>Loading workspaces...</p>
+        return <p>Loading channels...</p>
     }
 
     return (
-        <div>
-            <button onClick={toggleNewChannel}>Add new channel
-                {newChannel ? <i className="fa-solid fa-minus"></i> : <i className="fa-solid fa-plus"></i>}
+        <div className="channel-container">
+            <button className="toggle-channel-btn" onClick={toggleNewChannel}>
+                Add new channel
+                {newChannel ? (
+                    <i className="fa-solid fa-minus toggle-icon"></i>
+                ) : (
+                    <i className="fa-solid fa-plus toggle-icon"></i>
+                )}
             </button>
+
             {/* Si el menú está abierto, mostrar el formulario */}
             {newChannel && (
-                <form onSubmit={handleCreateChannel}>
-                    <input 
+                <form className="new-channel-form" onSubmit={handleCreateChannel}>
+                    <input
+                        className="channel-input"
                         type="text"
                         placeholder="Channel name"
                         value={channelName}
                         onChange={(e) => setChannelName(e.target.value)}
                     />
-                    <button type="submit">Create</button>
-                    <button type="button" onClick={toggleNewChannel}>Cancel</button>
+                    <div className="form-buttons">
+                        <button className="submit-btn" type="submit">Create</button>
+                        <button className="cancel-btn" type="button"
+                            onClick={() => {
+                                toggleNewChannel()
+                                setChannelName('')
+                                setErrorMessage('')
+                            }}
+                        >Cancel</button>
+                    </div>
                 </form>
             )}
-            {errorMessage && <p>{errorMessage}</p>}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
-    )
+    );
+
 }
 
 export default CreateCH

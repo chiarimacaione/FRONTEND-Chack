@@ -6,62 +6,62 @@
         "channels": [
             {
                 "id": 1,
-                "name": "#General",
+                "name": "General",
                 "messages": [
                     {
                         "id": 1,
                         "author": "Juan Durgali",
                         "img": "/img-user/Juan.jpg",
                         "text": "Hi team, how's everything going with this week's project?",
-                        "timestamp": "2024-10-12, 15:30:00"
+                        "timestamp": "12/10/2024, 15:30:00"
                     },
                     {
                         "id": 2,
                         "author": "Chiara Macaione",
-                        "img": "/img-user/Chiara.jpg", 
+                        "img": "/img-user/Chiara.jpg",
                         "text": "All good on my end, I’ve finished the presentation.",
-                        "timestamp": "2024-10-12, 15:32:00"
+                        "timestamp": "12/10/2024, 15:32:00"
                     },
                     {
                         "id": 3,
                         "author": "Miguel Torino",
                         "img": "/img-user/Miguel.jpg",
                         "text": "Same here, we just need to review the final details.",
-                        "timestamp": "2024-10-12, 15:35:00"
+                        "timestamp": "12/10/2024, 15:35:00"
                     },
                     {
                         "id": 4,
                         "author": "Lucía Brasi",
                         "img": "/img-user/Lucia.jpg",
                         "text": "Can someone help me with the data analysis? I'm a bit lost.",
-                        "timestamp": "2024-10-12, 15:40:00"
+                        "timestamp": "12/10/2024, 15:40:00"
                     },
                     {
                         "id": 5,
                         "author": "Juan Durgali",
                         "img": "/img-user/Juan.jpg",
                         "text": "Sure, Lucía! Give me 10 minutes and I’ll help.",
-                        "timestamp": "2024-10-12, 15:45:00"
+                        "timestamp": "12/10/2024, 15:45:00"
                     }
                 ]
             },
             {
                 "id": 2,
-                "name": "#Querys",
+                "name": "Querys",
                 "messages": [
                     {
                         "id": 1,
                         "author": "Juan Durgali",
                         "img": "/img-user/Juan.jpg",
                         "text": "Has anyone reviewed the API documentation?",
-                        "timestamp": "2024-10-12, 16:00:00"
+                        "timestamp": "12/10/2024, 16:00:00"
                     },
                     {
                         "id": 2,
                         "author": "Chiara Macaione",
                         "img": "/img-user/Chiara.jpg",
                         "text": "Yes, I’ve got it ready to share with the team.",
-                        "timestamp": "2024-10-12, 16:05:00"
+                        "timestamp": "12/10/2024, 16:05:00"
                     }
                 ]
             }
@@ -74,41 +74,41 @@
         "channels": [
             {
                 "id": 1,
-                "name": "#Only-Members",
+                "name": "Only-Members",
                 "messages": [
                     {
                         "id": 1,
                         "author": "Juan Durgali",
                         "img": "/img-user/Juan.jpg",
                         "text": "We need to check the pending tickets.",
-                        "timestamp": "2024-10-12, 14:30:00"
+                        "timestamp": "12/10/2024, 14:30:00"
                     },
                     {
                         "id": 2,
                         "author": "Chiara Macaione",
                         "img": "/img-user/Chiara.jpg",
                         "text": "I'll start by reviewing the oldest ones first.",
-                        "timestamp": "2024-10-12, 14:45:00"
+                        "timestamp": "12/10/2024, 14:45:00"
                     }
                 ]
             },
             {
                 "id": 2,
-                "name": "#Information-to-Save",
+                "name": "Information-to-Save",
                 "messages": [
                     {
                         "id": 1,
                         "author": "Miguel Torino",
                         "img": "/img-user/Miguel.jpg",
                         "text": "I’ve uploaded the updated support manual.",
-                        "timestamp": "2024-10-12, 15:00:00"
+                        "timestamp": "12/10/2024, 15:00:00"
                     },
                     {
                         "id": 2,
                         "author": "Lucía Brasi",
                         "img": "/img-user/Lucia.jpg",
                         "text": "Perfect, thanks Miguel.",
-                        "timestamp": "2024-10-12, 15:05:00"
+                        "timestamp": "12/10/2024, 15:05:00"
                     }
                 ]
             }
@@ -121,41 +121,41 @@
         "channels": [
             {
                 "id": 1,
-                "name": "#brainstorming",
+                "name": "brainstorming",
                 "messages": [
                     {
                         "id": 1,
                         "author": "Juan Durgali",
                         "img": "/img-user/Juan.jpg",
                         "text": "What ideas do you have for improving the workflow?",
-                        "timestamp": "2024-10-12, 17:00:00"
+                        "timestamp": "12/10/2024, 17:00:00"
                     },
                     {
                         "id": 2,
                         "author": "Chiara Macaione",
                         "img": "/img-user/Chiara.jpg",
                         "text": "We could automate some repetitive processes.",
-                        "timestamp": "2024-10-12, 17:05:00"
+                        "timestamp": "12/10/2024, 17:05:00"
                     },
                     {
                         "id": 3,
                         "author": "Lucía Brasi",
                         "img": "/img-user/Lucia.jpg",
                         "text": "I like that idea, what tools can we use?",
-                        "timestamp": "2024-10-12, 17:10:00"
+                        "timestamp": "12/10/2024, 17:10:00"
                     }
                 ]
             },
             {
                 "id": 2,
-                "name": "#announcements",
+                "name": "announcements",
                 "messages": [
                     {
                         "id": 1,
                         "author": "Miguel Torino",
                         "img": "/img-user/Miguel.jpg",
                         "text": "We have a status update meeting tomorrow at 10 AM.",
-                        "timestamp": "2024-10-12, 17:15:00"
+                        "timestamp": "12/10/2024, 17:15:00"
                     }
                 ]
             }

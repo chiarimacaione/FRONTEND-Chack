@@ -1,0 +1,85 @@
+@import url('/src/global.css');
+
+/* Contenedor principal */
+.channel-container {
+    border-radius: 5px;
+}
+
+/* Botón para alternar el formulario */
+.toggle-channel-btn {
+    border: none;
+    border-radius: 5px;
+    padding-left: 8px;
+    border: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    color: #d1d2d3;
+}
+
+/* Estilo del formulario */
+.new-channel-form {
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding-bottom: 12px;
+
+}
+
+.channel-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 210px;
+    margin-top: 10px;
+}
+
+/* Botones del formulario */
+.form-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 210px;
+}
+
+.submit-btn, .cancel-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.submit-btn {
+    background-color: #007a5a;
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #148567;
+}
+
+.cancel-btn {
+    background-color: #e01e5a;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #f14668;
+}
+
+/* Mensaje de error */
+.error-message {
+    color: #ff4d4d;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: lighter;
+}

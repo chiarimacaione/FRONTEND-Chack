@@ -6,7 +6,7 @@ import { validateChannel } from '../../../validations/validationsCH'
 
 const CreateWS = () => {
     const [workspaceName, setWorkspaceName] = useState('')
-    const [channelName, setChannelName] = useState('#')
+    const [channelName, setChannelName] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const navigate = useNavigate()
 

@@ -1,5 +1,6 @@
 @import url('/src/global.css');
 
+
 /* Estilos generales */
 body {
     color: #d1d2d3;
@@ -7,57 +8,65 @@ body {
     padding: 0;
 }
 
-.workspace-main{
+/* Header del workspace */
+.workspace-main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    padding-left: 14px;
-    padding-right: 14px;
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    z-index: 1000;
+    padding: 10px 14px;
+    background-color: #4A154B;
 }
 
-.workspace-main h2{
+.workspace-main h2 {
     font-size: 18px;
     color: #f8f8f8;
-    padding: 3px 8px
+    padding: 3px 8px;
 }
 
-.workspace-main button{
+.workspace-main button {
     background-color: #611f69;
     border: none;
     color: #f8f8f8;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s;
 }
 
-.exit-button:hover {
+.workspace-main button:hover {
     background-color: #b33fc0;
 }
 
 /* Contenedor principal del workspace */
 .workspace-container {
     display: flex;
-    height: 100vh;
+    height: 800px;
     overflow: hidden;
 }
 
-/* Sidebar (channels) */
+/* Sidebar (Channels) */
 .workspace-container-channels-sidebar {
+    position: fixed;
     background-color: #251329;
     width: 280px;
+    height: 800px;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding-top: 80px;
+    padding-left: 10px;
     overflow-y: auto;
     color: #e3ceebcc;
-    margin-bottom: 10px;
     border: 1px solid #611f69;
+    z-index: 900;
 }
 
 .workspace-container-channels-sidebar h4 {
     padding: 0 10px;
-    margin: 0 0 10px;
+    margin-bottom: 10px;
 }
 
 .channel-list {
@@ -69,6 +78,7 @@ body {
 .channel-list li {
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 .channel-hash {
@@ -79,14 +89,14 @@ body {
     color: #d1d2d3;
     text-decoration: none;
     padding: 8px 12px;
-    border-radius: 5px;
     display: flex;
     align-items: center;
-    transition: background 0.3s;
 }
 
-.workspace-container-channels-sidebar li:hover {
+.workspace-container-channels-sidebar a:hover {
     background-color: #342439;
+    width: 95%;
+    border-radius: 5px;
 }
 
 .add-channel {
@@ -101,8 +111,9 @@ body {
 
 .add-channel:hover {
     background-color: #342439;
+    width: 95%;
+    border-radius: 5px;
 }
-
 
 /* Sección de mensajes */
 .workspace-container-messages {
@@ -110,44 +121,13 @@ body {
     flex-direction: column;
     background-color: #1A1D21;
     padding: 20px;
+    padding-left: 300px;
     overflow-y: auto;
     border-top: 1px solid #611f69;
+    height: 800px;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10px;
 }
-
-
-/* Input para mensajes nuevos */
-.new-message-input {
-    background-color: #40444b;
-    border: none;
-    padding: 15px;
-    border-radius: 5px;
-    color: #d1d2d3;
-    margin-top: auto;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.new-message-input::placeholder {
-    color: #b9bbbe;
-}
-
-/* Botón de enviar */
-.new-message-button {
-    background-color: #7289da;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    color: white;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.new-message-button:hover {
-    background-color: #5b6eaa;
-}
-
 
 /* Scroll personalizado */
 ::-webkit-scrollbar {

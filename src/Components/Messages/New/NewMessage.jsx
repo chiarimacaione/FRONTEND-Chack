@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './NewMessage.css';
 
 const NewMessage = ({ workspaceId, channelId, updateMessages }) => {
     const [message, setMessage] = useState('');
@@ -27,16 +28,19 @@ const NewMessage = ({ workspaceId, channelId, updateMessages }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="new-message-form">
             <input
                 type="text"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Type a message..."
+                className="message-input"
             />
-            <button type="submit">Send</button>
+            <button type="submit" className="send-button">Send</button>
         </form>
     );
+    
+    
 };
 
 export default NewMessage;

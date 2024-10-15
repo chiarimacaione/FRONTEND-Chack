@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useWS from '../../hooks/useWS';
 import CreateCH from '../Channels/CreateCH';
-import MessagesList from '../Messages/MessagesList';
-import NewMessage from '../Messages/NewMessage';
+import MessagesList from '../Messages/List/MessagesList';
+import NewMessage from '../Messages/New/NewMessage';
 import './Workspace.css';
 
 const Workspace = () => {
