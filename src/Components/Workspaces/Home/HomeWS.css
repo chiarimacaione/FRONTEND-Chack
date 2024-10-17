@@ -61,13 +61,11 @@
     margin-left: 20px;
     font-size: 20px;
     color: #3F0E40;
-    /* Slack purple for text */
 }
 
 /* Button */
 .workspace-item button {
     background-color: #611f69;
-    /* Slack purple for button */
     color: #FFFFFF;
     border: none;
     padding: 8px 15px;
@@ -134,9 +132,9 @@
     padding: 15px;
 }
 
-/* Responsive design */
+/* Media queries for responsive design */
 
-/* No less than 320px, no greater than 410px */
+/* No less than 320px, no greater than 445px */
 @media screen and (min-width:320px) and (max-width:445px) {
     .home-main-div h2{
         font-size: 28px;
@@ -167,7 +165,7 @@
     
     .workspace-item button {
         position: relative;
-        bottom: 15px; /* Mueve el botón hacia arriba */
+        bottom: 15px; /* Moves the button upwards */
     }
     
     .create-workspace-container {

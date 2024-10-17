@@ -19,31 +19,95 @@
                         "id": 2,
                         "author": "Chiara Macaione",
                         "img": "/img-user/Chiara.jpg",
-                        "text": "All good on my end, I’ve finished the presentation.",
+                        "text": "All good on my end, I’ve finished the presentation. Just polishing a few slides.",
                         "timestamp": "12/10/2024, 15:32:00"
                     },
                     {
                         "id": 3,
                         "author": "Miguel Torino",
                         "img": "/img-user/Miguel.jpg",
-                        "text": "Same here, we just need to review the final details.",
+                        "text": "Same here, we just need to review the final details. I’ll check with you later, Chiara, to sync up.",
                         "timestamp": "12/10/2024, 15:35:00"
                     },
                     {
                         "id": 4,
                         "author": "Lucía Brasi",
                         "img": "/img-user/Lucia.jpg",
-                        "text": "Can someone help me with the data analysis? I'm a bit lost.",
+                        "text": "Can someone help me with the data analysis? I'm a bit lost with the regression part.",
                         "timestamp": "12/10/2024, 15:40:00"
                     },
                     {
                         "id": 5,
                         "author": "Juan Durgali",
                         "img": "/img-user/Juan.jpg",
-                        "text": "Sure, Lucía! Give me 10 minutes and I’ll help.",
+                        "text": "Sure, Lucía! Give me 10 minutes and I’ll help you out. Have you started running any tests?",
                         "timestamp": "12/10/2024, 15:45:00"
+                    },
+                    {
+                        "id": 6,
+                        "author": "Lucía Brasi",
+                        "img": "/img-user/Lucia.jpg",
+                        "text": "Yes, but I’m not sure if the model is working correctly. I keep getting some weird outliers.",
+                        "timestamp": "12/10/2024, 15:47:00"
+                    },
+                    {
+                        "id": 7,
+                        "author": "Chiara Macaione",
+                        "img": "/img-user/Chiara.jpg",
+                        "text": "Lucía, if you want, I can send over the documentation I used for my part of the data analysis. It might help clarify things.",
+                        "timestamp": "12/10/2024, 15:50:00"
+                    },
+                    {
+                        "id": 8,
+                        "author": "Lucía Brasi",
+                        "img": "/img-user/Lucia.jpg",
+                        "text": "That would be super helpful, Chiara! Thanks a lot.",
+                        "timestamp": "12/10/2024, 15:52:00"
+                    },
+                    {
+                        "id": 9,
+                        "author": "Miguel Torino",
+                        "img": "/img-user/Miguel.jpg",
+                        "text": "Juan, do you think we should include more detailed metrics in the report? I was reviewing some feedback, and a few people mentioned wanting more data insights.",
+                        "timestamp": "12/10/2024, 15:55:00"
+                    },
+                    {
+                        "id": 10,
+                        "author": "Juan Durgali",
+                        "img": "/img-user/Juan.jpg",
+                        "text": "Good point, Miguel. Let’s make a section for that. Maybe add a breakdown of key metrics in the appendix, so it doesn’t clutter the main report?",
+                        "timestamp": "12/10/2024, 16:00:00"
+                    },
+                    {
+                        "id": 11,
+                        "author": "Miguel Torino",
+                        "img": "/img-user/Miguel.jpg",
+                        "text": "Sounds good to me. I’ll start pulling those numbers together now. I’ll need about an hour or so.",
+                        "timestamp": "12/10/2024, 16:05:00"
+                    },
+                    {
+                        "id": 12,
+                        "author": "Lucía Brasi",
+                        "img": "/img-user/Lucia.jpg",
+                        "text": "Thanks for the support, everyone! I’ll get back to you once I’ve cleaned up the data and rerun the analysis.",
+                        "timestamp": "12/10/2024, 16:10:00"
+                    },
+                    {
+                        "id": 13,
+                        "author": "Chiara Macaione",
+                        "img": "/img-user/Chiara.jpg",
+                        "text": "Great! Let’s aim to have everything ready by end of day tomorrow. We’re almost there!",
+                        "timestamp": "12/10/2024, 16:15:00"
+                    },
+                    {
+                        "id": 14,
+                        "author": "Juan Durgali",
+                        "img": "/img-user/Juan.jpg",
+                        "text": "Perfect! Let’s wrap up the final bits and make this presentation a hit. Thanks, team!",
+                        "timestamp": "12/10/2024, 16:20:00"
                     }
                 ]
+                
             },
             {
                 "id": 2,

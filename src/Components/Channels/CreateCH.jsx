@@ -1,62 +1,52 @@
-import React, { useState } from 'react'
-import { validateChannel } from '../../validations/validationsCH'
-import useWS from '../../hooks/useWS'  // Importar el hook personalizado
-import './CreateCH.css'
+import React, { useState } from 'react';
+import { validateChannel } from '../../validations/validationsCH';
+import useWS from '../../hooks/useWS';
+import './CreateCH.css';
 
-const CreateCH = ({ workspaceID }) => {
-    const [newChannel, setNewChannel] = useState(false)
-    const [channelName, setChannelName] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
+const CreateCH = ({ workspaceID, addNewChannel }) => {
+    const [newChannel, setNewChannel] = useState(false);
+    const [channelName, setChannelName] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     // Usar el hook para obtener los workspaces y el estado de carga
-    const { workspaces, isLoading } = useWS()
+    const { workspaces, isLoading } = useWS();
 
     const toggleNewChannel = () => {
         setNewChannel(!newChannel);
-    }
+    };
 
     const handleCreateChannel = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         // Validaciones
-        const error = validateChannel(channelName, workspaces)
+        const error = validateChannel(channelName, workspaces);
         if (error) {
-            setErrorMessage(error)
-            return
+            setErrorMessage(error);
+            return;
         }
 
         // Si la validación es correcta, continúa con la creación
-        setErrorMessage('')
-        console.log(`Creating channel: ${channelName}`)
+        setErrorMessage('');
+        console.log(`Creating channel: ${channelName}`);
 
-        // Buscar el workspace al que se le agregará el canal
-        const updatedWorkspaces = workspaces.map((workspace) => {
-            if (workspace.id === workspaceID) {
-                // Agregar el nuevo canal al array de canales del workspace
-                const newChannelObj = {
-                    id: Date.now(), // Generar un ID único para el canal
-                    name: channelName,
-                    messages: [] // Inicialmente, el canal no tiene mensajes
-                };
-                return {
-                    ...workspace,
-                    channels: [...workspace.channels, newChannelObj] // Agregar el nuevo canal
-                };
-            }
-            return workspace; // Si no es el workspace correcto, retornarlo sin cambios
-        });
+        // Crear el nuevo canal
+        const newChannelObj = {
+            id: Date.now(), // Generar un ID único para el canal
+            name: channelName,
+            messages: [] // Inicialmente, el canal no tiene mensajes
+        };
 
-        // Actualizar el localStorage con los nuevos datos
-        localStorage.setItem('workspaces', JSON.stringify(updatedWorkspaces))
+        // Pasar el nuevo canal al componente padre
+        addNewChannel(newChannelObj);
 
         // Resetear el formulario
-        setChannelName('')
-        setNewChannel(false)
-    }
+        setChannelName('');
+        setNewChannel(false);
+    };
 
     // Mostrar un mensaje mientras los canales se están cargando
     if (isLoading) {
-        return <p>Loading channels...</p>
+        return <p>Loading channels...</p>;
     }
 
     return (
@@ -84,9 +74,9 @@ const CreateCH = ({ workspaceID }) => {
                         <button className="submit-btn" type="submit">Create</button>
                         <button className="cancel-btn" type="button"
                             onClick={() => {
-                                toggleNewChannel()
-                                setChannelName('')
-                                setErrorMessage('')
+                                toggleNewChannel();
+                                setChannelName('');
+                                setErrorMessage('');
                             }}
                         >Cancel</button>
                     </div>
@@ -95,7 +85,6 @@ const CreateCH = ({ workspaceID }) => {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
     );
+};
 
-}
-
-export default CreateCH
+export default CreateCH;

@@ -1,33 +1,180 @@
 .new-message-form {
     display: flex;
+    flex-direction: column; /* Align elements vertically */
+    padding: 10px;
+    background-color: #222529;
+    border: #adaeaf31 1px solid;
+    border-radius: 5px;
+    gap: 10px; /* Space between icons and input */
+    position: relative; /* Set relative positioning to the form */
+}
+
+.new-message-form:focus-within {
+    border: #ADAEAF 1px solid;
+}
+
+/* Icons */
+
+.messages-icons {
+    display: flex;
     align-items: center;
-    background-color: #2f3136; /* Dark background similar to Slack */
+    gap: 15px;
+    margin-left: 10px;
+    color: #ADAEAF;
+    cursor: pointer;
+}
+
+.messages-icon-bold, 
+.messages-icon-italic, 
+.messages-icon-strikethrough, 
+.messages-icon-link, 
+.messages-icon-list-ordered, 
+.messages-icon-list-bulleted, 
+.messages-icon-quote, 
+.messages-icon-code, 
+.messages-icon-code-block, 
+.messages-icon-send-now {
+    font-size: 18px;
+    transition: color 0.2s ease;
+    cursor: pointer;
+}
+
+.messages-icon-bold:hover, 
+.messages-icon-italic:hover, 
+.messages-icon-strikethrough:hover, 
+.messages-icon-link:hover, 
+.messages-icon-list-ordered:hover, 
+.messages-icon-list-bulleted:hover, 
+.messages-icon-quote:hover, 
+.messages-icon-code:hover, 
+.messages-icon-code-block:hover, 
+.messages-icon-send-now:hover {
+    color: rgb(255, 248, 248);
+}
+
+.messages-icon-send-now {
+    position: absolute;
+    right: 5px;
+    bottom: 0px;
+    background-color: #00000000;
+    color: #ADAEAF;
+    border: none;
     padding: 10px;
     border-radius: 5px;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
 }
 
 .message-input {
     flex: 1;
-    background-color: #40444b; /* Input background color */
     border: none;
     padding: 10px;
     border-radius: 5px;
-    color: #dcddde; /* Text color */
+    background-color: #222529;
+    color: #D0D0D1;
     font-size: 16px;
     outline: none;
-    margin-right: 10px;
+    margin-top: 10px; /* Space between icons and input field */
+
 }
 
-.send-button {
-    background-color: #5865f2; /* Button color */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+.message-input::placeholder {
+    color: #6F7173;
 }
 
-.send-button:hover {
-    background-color: #3f8d4f; /* Slightly darker on hover */
+
+
+
+
+/* Media queries for responsive design */
+
+/* No less than 320px, no greater than 445px */
+@media screen and (min-width:320px) and (max-width:445px) {
+    .workspace-container {
+        flex-direction: column;
+    }
+
+    .workspace-container-channels-sidebar {
+        display: none;
+    }
+
+    .workspace-container-messages {
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+}
+
+@media screen and (min-width:445px) and (max-width:780px) {
+    .workspace-main {
+        height: 55px;
+        padding: 10px;
+    }
+
+    .workspace-main h2 {
+        font-size: 16px;
+    }
+
+    .workspace-main button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .workspace-container-channels-sidebar {
+        width: 240px;
+        padding-left: 8px;
+    }
+
+    .workspace-container-messages {
+        padding-left: 250px;
+        padding-right: 10px;
+    }
+}
+
+@media screen and (min-width:780px) and (max-width:1024px) {
+    .workspace-main {
+        height: 60px;
+        padding: 12px;
+    }
+
+    .workspace-main h2 {
+        font-size: 18px;
+    }
+
+    .workspace-main button {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .workspace-container-channels-sidebar {
+        width: 260px;
+    }
+
+    .workspace-container-messages {
+        padding-left: 270px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .workspace-main {
+        height: 60px;
+        padding: 14px;
+    }
+
+    .workspace-main h2 {
+        font-size: 18px;
+    }
+
+    .workspace-main button {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .workspace-container-channels-sidebar {
+        width: 280px;
+    }
+
+    .workspace-container-messages {
+        padding-left: 300px;
+    }
 }

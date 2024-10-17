@@ -10,6 +10,7 @@ const Workspace = () => {
     const { workspace_id, channel_id } = useParams();
     const { isLoading, workspaces: initialWorkspaces } = useWS();
     const [workspaces, setWorkspaces] = useState(initialWorkspaces);
+    const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
     // Actualizar el estado de los workspaces cuando el hook `useWS` cargue los datos
     useEffect(() => {
@@ -70,44 +71,56 @@ const Workspace = () => {
         localStorage.setItem('workspaces', JSON.stringify(updatedWorkspaces)); // Guardar cambios en localStorage
     };
 
+    const toggleSidebar = () => {
+        setIsSidebarVisible(!isSidebarVisible);
+        console.log(isSidebarVisible);
+    };
+
     return (
         <>
-            <main className='workspace-main'>
-                <h2>{workspaceSelected.name}</h2>
-                <Link to='/'>
-                    <button className="exit-button">Exit</button>
-                </Link>
-            </main>
-            <div className="workspace-container">
-                <div className="workspace-container-channels-sidebar">
-                    <h4>Channels</h4>
-                    <ul className="channel-list">
-                        {workspaceSelected.channels.map((channel) => (
-                            <li key={channel.id}>
-                                <Link to={`/workspace/${workspaceSelected.id}/channel/${channel.id}`}>
-                                    <span className="channel-hash">#</span> {channel.name}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                    <span className="add-channel">+
-                        <CreateCH workspaceID={workspaceSelected.id} addNewChannel={addNewChannel} />
-                    </span>
-                </div>
+            <div className="workspace-div">
+                <main className='workspace-main'>
+                    <button className="hamburger-button" onClick={toggleSidebar}>
+                        ☰
+                    </button>
+                    <h2>{workspaceSelected.name}</h2>
+                    <Link to='/'>
+                        <button className="exit-button">Exit</button>
+                    </Link>
 
+                </main>
 
-                <div className="workspace-container-messages">
-                    <MessagesList messages={channelSelected.messages} channelName={channelSelected.name} />
-                    <NewMessage
-                        workspaceId={workspaceSelected.id}
-                        channelId={channelSelected.id}
-                        updateMessages={updateMessages}
-                    />
+                <div className="workspace-container">
+                    <div className={`workspace-container-channels-sidebar ${isSidebarVisible ? '-visible' : '-hidden'}`}>
+                        <h4>Channels</h4>
+                        <ul className="channel-list">
+                            {workspaceSelected.channels.map((channel) => (
+                                <li key={channel.id}>
+                                    <Link to={`/workspace/${workspaceSelected.id}/channel/${channel.id}`}>
+                                        <span className="channel-hash">#</span> {channel.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                        <span className="add-channel">+
+                            <CreateCH workspaceID={workspaceSelected.id} addNewChannel={addNewChannel} />
+                        </span>
+                    </div>
+
+                    <div className="workspace-container-messages">
+                        <MessagesList messages={channelSelected.messages} channelName={channelSelected.name} />
+                        <NewMessage
+                            workspaceId={workspaceSelected.id}
+                            channelId={channelSelected.id}
+                            updateMessages={updateMessages}
+                            channelName={channelSelected.name}
+                        />
+                    </div>
                 </div>
             </div>
+
         </>
     );
-
 };
 
 export default Workspace;
