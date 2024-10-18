@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import data from '../data/data.json' // Import static workspaces from data.json
 
-
 const useWS = () => {
   const [workspaces, setWorkspaces] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -12,16 +11,17 @@ const useWS = () => {
       const predefinedWorkspaces = data
 
       // Get WS from localStorage
-      const localWorkspaces = JSON.parse(localStorage.getItem('workspaces'))
-      const savedWorkspaces = localWorkspaces || predefinedWorkspaces
+      const localWorkspaces = JSON.parse(localStorage.getItem('workspaces')) || []
 
-      // Update state with all WS
-      setWorkspaces(savedWorkspaces)
+      // Merge both workspaces (predefined and saved)
+      const allWorkspaces = [...predefinedWorkspaces, ...localWorkspaces]
+
+      // Update state with merged WS
+      setWorkspaces(allWorkspaces)
       setIsLoading(false)
     }
 
     loadWorkspaces()
-
   }, [])
 
   return { isLoading, workspaces }
