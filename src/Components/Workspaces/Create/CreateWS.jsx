@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import getRandomImage from '../../../../assets/images/getRandomImage'
 import { validateWorkspace } from '../../../validations/validationsWS'
 import { validateChannel } from '../../../validations/validationsCH'
+import './CreateWS.css'
 
 const CreateWS = () => {
     const [workspaceName, setWorkspaceName] = useState('')
@@ -62,12 +63,11 @@ const CreateWS = () => {
     }
 
     return (
-        <div>
-            <div className="new-workspace-container">
-                <h2>Create New Workspace</h2>
-
+        <div className="create">
+            <div className="new-workspace">
+                <h2 className='new-workspace-title'>Create New Workspace</h2>
                 <form onSubmit={handleCreate}>
-                    <div className="form-group">
+                    <div className="new-workspace-form">
                         <label htmlFor='name-WS'>Workspace name</label>
                         <input
                             id='name-WS'
@@ -75,11 +75,10 @@ const CreateWS = () => {
                             type="text"
                             value={workspaceName}
                             onChange={(event) => setWorkspaceName(event.target.value)}
-                            placeholder="Workspace"
+                            placeholder="Ex: Team Hub"
                         />
                     </div>
-
-                    <div className="form-group">
+                    <div className="new-workspace-form">
                         <label htmlFor='name-CH'>Channel name</label>
                         <input
                             id='name-CH'
@@ -87,20 +86,20 @@ const CreateWS = () => {
                             type="text"
                             value={channelName}
                             onChange={(event) => setChannelName(event.target.value)}
-                            placeholder="Channel"
+                            placeholder="Ex: General"
                         />
                     </div>
-
-                    {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
-                    <hr />
-                    <div className="buttons">
-                        <button type="submit">Confirm</button>
-                        <button onClick={handleCancel}>Cancel</button>
+                    <div className="new-workspace-error-message">
+                        {errorMessage && <p>{errorMessage}</p>}
+                    </div>
+                    <div className="new-workspace-buttons">
+                        <button type="submit" className='submit-btn'>Confirm</button>
+                        <button onClick={handleCancel} className='cancel-btn'>Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
+            
     )
 }
 

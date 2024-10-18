@@ -3,12 +3,6 @@ export const validateWorkspace = (workspaceName, savedWorkspaces) => {
         return 'Workspace name must be between 3 and 16 characters.'
     }
 
-    // Validate blanks and require hyphens
-    const hasSpaces = /\s/;
-    if (hasSpaces.test(workspaceName)) {
-        return 'Workspace name cannot contain spaces. Use hyphens (-) instead.'
-    }
-
     if (workspaceName.trim() === '') {
         return 'Names cannot be empty or contain only spaces.'
     }
