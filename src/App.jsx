@@ -1,9 +1,7 @@
 import React from 'react'
 import Home from './Pages/Home'
 import { Route, Routes } from 'react-router-dom'
-import CreateWS from './Components/Workspaces/Create/CreateWS'
-import Workspace from './Components/Workspaces/Workspace'
-
+import { CreateWS, Workspace } from './Components/index'
 function App() {
 
   return (

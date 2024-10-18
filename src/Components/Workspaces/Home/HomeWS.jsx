@@ -1,12 +1,11 @@
 import React from 'react'
 import WorkspaceItem from '../ItemList/WorkspaceItem'
 import useWS from '../../../hooks/useWS'
-import { Link, useNavigate } from 'react-router-dom'
-import './HomeWS.css' // Import the CSS
+import { Link } from 'react-router-dom'
+import './HomeWS.css'
 
 const HomeWS = () => {
   const { isLoading, workspaces } = useWS()
-  const navigate = useNavigate();
 
   return (
     <div className='home-main-div'>

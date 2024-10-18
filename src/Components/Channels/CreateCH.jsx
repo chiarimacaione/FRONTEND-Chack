@@ -8,7 +8,7 @@ const CreateCH = ({ workspaceID, addNewChannel }) => {
     const [channelName, setChannelName] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    // Usar el hook para obtener los workspaces y el estado de carga
+    // Use hook to obtain workspaces and loading state
     const { workspaces, isLoading } = useWS();
 
     const toggleNewChannel = () => {
@@ -18,33 +18,32 @@ const CreateCH = ({ workspaceID, addNewChannel }) => {
     const handleCreateChannel = (e) => {
         e.preventDefault();
 
-        // Validaciones
+        // Validations
         const error = validateChannel(channelName, workspaces);
         if (error) {
             setErrorMessage(error);
             return;
         }
 
-        // Si la validación es correcta, continúa con la creación
+        // If validation is successful, continue with creation
         setErrorMessage('');
-        console.log(`Creating channel: ${channelName}`);
+        //console.log(`Creating channel: ${channelName}`);
 
-        // Crear el nuevo canal
+        // Create new channel
         const newChannelObj = {
-            id: Date.now(), // Generar un ID único para el canal
+            id: Date.now(), // unique ID
             name: channelName,
-            messages: [] // Inicialmente, el canal no tiene mensajes
+            messages: [] // No messages yet
         };
 
-        // Pasar el nuevo canal al componente padre
+        // Send the new channel to the parent component
         addNewChannel(newChannelObj);
 
-        // Resetear el formulario
+        // Reset form
         setChannelName('');
         setNewChannel(false);
     };
 
-    // Mostrar un mensaje mientras los canales se están cargando
     if (isLoading) {
         return <p>Loading channels...</p>;
     }
@@ -60,7 +59,6 @@ const CreateCH = ({ workspaceID, addNewChannel }) => {
                 )}
             </button>
 
-            {/* Si el menú está abierto, mostrar el formulario */}
             {newChannel && (
                 <form className="new-channel-form" onSubmit={handleCreateChannel}>
                     <input
@@ -87,4 +85,4 @@ const CreateCH = ({ workspaceID, addNewChannel }) => {
     );
 };
 
-export default CreateCH;
+export default CreateCH

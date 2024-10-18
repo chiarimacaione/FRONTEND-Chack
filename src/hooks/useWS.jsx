@@ -20,12 +20,7 @@ const useWS = () => {
       setIsLoading(false)
     }
 
-    //loadWorkspaces()
-
-      setTimeout(() => {
-        loadWorkspaces()
-      }, 30)
-
+    loadWorkspaces()
 
   }, [])
 

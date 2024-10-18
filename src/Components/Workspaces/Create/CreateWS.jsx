@@ -35,7 +35,7 @@ const CreateWS = () => {
 
         // Create new workspace object
         const newWorkspace = {
-            id: Date.now(),  // Unique ID
+            id: Date.now(),  // unique ID
             name: workspaceName,
             img: getRandomImage(),
             channels: [

@@ -14,17 +14,15 @@ const NewMessage = ({ workspaceId, channelId, updateMessages, channelName }) => 
 
         // Create new message
         const newMessage = {
-            id: Date.now(), // Generate unique ID
+            id: Date.now(), // unique ID
             author: 'You',
             text: message,
             img: "/img-user/You.jpg",
             timestamp: new Date().toLocaleString(),
         };
 
-        // Llamar a la función para actualizar los mensajes en el workspace y canal actuales
         updateMessages(newMessage);
 
-        // Limpiar el campo de entrada
         setMessage('');
     };
 
@@ -55,7 +53,6 @@ const NewMessage = ({ workspaceId, channelId, updateMessages, channelName }) => 
 
     );
 
-
 };
 
-export default NewMessage;
+export default NewMessage

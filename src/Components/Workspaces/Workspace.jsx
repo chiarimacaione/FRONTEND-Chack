@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useWS from '../../hooks/useWS';
-import CreateCH from '../Channels/CreateCH';
-import MessagesList from '../Messages/List/MessagesList';
-import NewMessage from '../Messages/New/NewMessage';
+import { CreateCH, MessagesList, NewMessage } from '../../Components';
 import './Workspace.css';
 
 const Workspace = () => {
@@ -12,7 +10,7 @@ const Workspace = () => {
     const [workspaces, setWorkspaces] = useState(initialWorkspaces);
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
-    // Actualizar el estado de los workspaces cuando el hook `useWS` cargue los datos
+    // Update the state of the workspaces when the `useWS` hook loads the data
     useEffect(() => {
         setWorkspaces(initialWorkspaces);
     }, [initialWorkspaces]);
@@ -21,19 +19,19 @@ const Workspace = () => {
         return <span>Loading...</span>;
     }
 
-    // Buscar el workspace seleccionado
+    // Search for the selected workspace
     const workspaceSelected = workspaces.find(workspace => workspace.id === Number(workspace_id));
     if (!workspaceSelected) {
         return <span>Workspace not found</span>;
     }
 
-    // Buscar el canal seleccionado dentro del workspace
+    //Search for the selected channel within the workspace
     const channelSelected = workspaceSelected.channels.find(channel => channel.id === Number(channel_id));
     if (!channelSelected) {
         return <span>Channel not found</span>;
     }
 
-    // Función para actualizar los mensajes cuando se envía un nuevo mensaje
+    // Function to update messages when a new message is sent
     const updateMessages = (newMessage) => {
         const updatedWorkspaces = workspaces.map((workspace) => {
             if (workspace.id === workspaceSelected.id) {
@@ -53,22 +51,22 @@ const Workspace = () => {
             return workspace;
         });
         setWorkspaces(updatedWorkspaces);
-        localStorage.setItem('workspaces', JSON.stringify(updatedWorkspaces)); // Guardar cambios en localStorage
+        localStorage.setItem('workspaces', JSON.stringify(updatedWorkspaces)); // Save changes in localStorage
     };
 
-    // Función para agregar un nuevo canal al workspace
+    // Function to add a new channel to the ws
     const addNewChannel = (newChannel) => {
         const updatedWorkspaces = workspaces.map((workspace) => {
             if (workspace.id === workspaceSelected.id) {
                 return {
                     ...workspace,
-                    channels: [...workspace.channels, newChannel], // Agregar el nuevo canal
+                    channels: [...workspace.channels, newChannel],
                 };
             }
             return workspace;
         });
         setWorkspaces(updatedWorkspaces);
-        localStorage.setItem('workspaces', JSON.stringify(updatedWorkspaces)); // Guardar cambios en localStorage
+        localStorage.setItem('workspaces', JSON.stringify(updatedWorkspaces));
     };
 
     const toggleSidebar = () => {
@@ -123,4 +121,4 @@ const Workspace = () => {
     );
 };
 
-export default Workspace;
+export default Workspace
