@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import getRandomImage from '../../../../assets/images/getRandomImage'
 import { validateWorkspace } from '../../../validations/validationsWS'
 import { validateChannel } from '../../../validations/validationsCH'
+import axios from 'axios'
 import './CreateWS.css'
 
 const CreateWS = () => {
@@ -11,20 +12,17 @@ const CreateWS = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const navigate = useNavigate()
 
-    const handleCreate = (event) => {
+    const handleCreate = async (event) => {
         event.preventDefault()
 
-        // Fetch current workspaces stored in localStorage
-        const savedWorkspaces = JSON.parse(localStorage.getItem('workspaces')) || []
-
         // Validations
-        const errorWS = validateWorkspace(workspaceName, savedWorkspaces)
+        const errorWS = validateWorkspace(workspaceName)
         if (errorWS) {
             setErrorMessage(errorWS)
             return
         }
 
-        const errorCH = validateChannel(channelName, savedWorkspaces)
+        const errorCH = validateChannel(channelName)
         if (errorCH) {
             setErrorMessage(errorCH)
             return
@@ -35,31 +33,52 @@ const CreateWS = () => {
 
         // Create new workspace object
         const newWorkspace = {
-            id: Date.now(),  // unique ID
             name: workspaceName,
             img: getRandomImage(),
             channels: [
                 {
-                    id: Date.now(),
                     name: channelName,
                     messages: []  // Empty array for messages
                 }
             ],
         }
 
-        // Add the new workspace to the existing list
-        const updatedWorkspaces = [...savedWorkspaces, newWorkspace]
+        try {
+            // Get the token from localStorage
+            const token = localStorage.getItem('token')
+            console.log(token)
+            if (!token) {
+                console.error('No token found in localStorage')
+                return
+            }
 
-        // Save the updated list to localStorage
-        localStorage.setItem('workspaces', JSON.stringify(updatedWorkspaces))
-
-        // Redirect to the main page
-        navigate('/')
+            // Send the new workspace data to the backend
+            const response = await axios.post(
+                'http://localhost:3000/workspaces',  // Tu ruta del backend para crear workspaces
+                newWorkspace,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,  // Enviar el token para autenticar al usuario
+                    },
+                }
+            )
+            console.log('response:', response)
+            // Check if the workspace was successfully created
+            if (response.status === 201) {
+                console.log('Workspace created successfully:', response.data)
+                navigate('/home')  // Redirigir a la página principal
+            } else {
+                setErrorMessage('Error creating workspace. Please try again.')
+            }
+        } catch (error) {
+            console.error('Error creating workspace:', error)
+            setErrorMessage('Error creating workspace. Please try again.')
+        }
     }
 
     const handleCancel = (event) => {
         event.preventDefault()
-        navigate('/')
+        navigate('/home')
     }
 
     return (
@@ -99,7 +118,6 @@ const CreateWS = () => {
                 </form>
             </div>
         </div>
-            
     )
 }
 

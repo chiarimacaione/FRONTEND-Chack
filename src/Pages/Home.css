@@ -30,6 +30,23 @@ html {
     margin-bottom: 40px;
 }
 
+/* Botón de perfil */
+.profile-btn button {
+    background-color: #FFFFFF;
+    color: #4A154B;
+    border: 1px solid #4A154B;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.profile-btn:hover {
+    background-color: #4A154B;
+    color: #FFFFFF;
+}
+
 /* Animations */
 .title-animate-character {
     text-transform: uppercase;

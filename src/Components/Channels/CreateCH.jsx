@@ -3,7 +3,8 @@ import { validateChannel } from '../../validations/validationsCH';
 import useWS from '../../hooks/useWS';
 import './CreateCH.css';
 
-const CreateCH = ({ workspaceID, addNewChannel }) => {
+
+const CreateCH = ({ workspaceID, addNewChannel = () => {} }) => {
     const [newChannel, setNewChannel] = useState(false);
     const [channelName, setChannelName] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -15,34 +16,55 @@ const CreateCH = ({ workspaceID, addNewChannel }) => {
         setNewChannel(!newChannel);
     };
 
-    const handleCreateChannel = (e) => {
-        e.preventDefault();
+    const handleCreateChannel = async (e) => {
+        e.preventDefault()
 
-        // Validations
+        if (!workspaces || workspaces.length === 0) {
+            setErrorMessage('Workspaces not loaded yet. Try again.');
+            return;
+        }
+    
         const error = validateChannel(channelName, workspaces);
         if (error) {
             setErrorMessage(error);
             return;
         }
-
-        // If validation is successful, continue with creation
-        setErrorMessage('');
-        //console.log(`Creating channel: ${channelName}`);
-
-        // Create new channel
-        const newChannelObj = {
-            id: Date.now(), // unique ID
-            name: channelName,
-            messages: [] // No messages yet
-        };
-
-        // Send the new channel to the parent component
-        addNewChannel(newChannelObj);
-
-        // Reset form
-        setChannelName('');
-        setNewChannel(false);
+    
+        try {
+            const token = localStorage.getItem('token'); // Obtener el token
+            const response = await fetch(`http://localhost:3000/channels/${workspaceID}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: channelName })
+            });
+    
+            const data = await response.json();
+    
+            if (!response.ok) {
+                throw new Error(data.message || 'Error creating channel');
+            }
+    
+            // Agregar el nuevo canal al estado
+            if (typeof addNewChannel === "function") {
+                addNewChannel(data.data.new_channel);
+            }
+    
+            console.log('Channel created:', data.data.new_channel);            
+    
+            // Resetear formulario
+            setChannelName('');
+            setNewChannel(false);
+            setErrorMessage('');
+        } catch (error) {
+            console.error('Error:', error);
+            setErrorMessage(error.message);
+        }
     };
+    
+    
 
     if (isLoading) {
         return <p>Loading channels...</p>;

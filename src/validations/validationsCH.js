@@ -1,5 +1,9 @@
 export const validateChannel = (channelName, savedWorkspaces) => {
 
+    if (!Array.isArray(savedWorkspaces)) {
+        savedWorkspaces = []
+    }
+
     if (channelName.length < 3 || channelName.length > 16) {
         return 'Channel name must be between 3 and 16 characters.'
     }

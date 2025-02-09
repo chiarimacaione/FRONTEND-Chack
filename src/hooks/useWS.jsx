@@ -1,30 +1,64 @@
-import { useEffect, useState } from 'react'
-import data from '../data/data.json' // Import static workspaces from data.json
-
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const useWS = () => {
-  const [workspaces, setWorkspaces] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [workspaces, setWorkspaces] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loadWorkspaces = () => {
-      // Get WS from data.json
-      const predefinedWorkspaces = data
+    const fetchWorkspaces = async () => {
+      try {
+        const token = localStorage.getItem('token'); // Obtener el token
+        if (!token) {
+          console.error('No token found in localStorage', token);
+          return;
+        }
 
-      // Get WS from localStorage
-      const localWorkspaces = JSON.parse(localStorage.getItem('workspaces'))
-      const savedWorkspaces = localWorkspaces || predefinedWorkspaces
+        const response = await axios.get('http://localhost:3000/workspaces', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      // Update state with all WS
-      setWorkspaces(savedWorkspaces)
-      setIsLoading(false)
+        console.log('API Response:', response.data);
+        setWorkspaces(response.data.data.workspaces || []);
+      } catch (error) {
+        console.error('Error fetching workspaces:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchWorkspaces();
+  }, []);
+
+  // Función para obtener los mensajes de un canal específico
+  const getMessages = async (channelId) => {
+    try {
+      const token = localStorage.getItem('token'); // Obtener el token
+      if (!token) {
+        console.error('No token found in localStorage');
+        return [];
+      }
+
+      const response = await axios.get(`http://localhost:3000/api/messages/${channelId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data.data.messages || [];
+
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+            console.warn(`No messages found for channel ${channelId}, returning empty array.`);
+            return [];
+        }
+        console.error('Error fetching messages:', error);
+        return [];
     }
+  };
 
-    loadWorkspaces()
+  return { isLoading, workspaces, getMessages };
+};
 
-  }, [])
-
-  return { isLoading, workspaces }
-}
-
-export default useWS
+export default useWS;
