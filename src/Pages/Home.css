@@ -21,17 +21,16 @@ html {
 .home-container h1 {
     color: #ffffff;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .home-container h2 {
     font-size:52px;
     color: #ffffff;
-    margin-bottom: 40px;
 }
 
 /* Botón de perfil */
-.profile-btn button {
+.profile-btn, .logout-btn {
     background-color: #FFFFFF;
     color: #4A154B;
     border: 1px solid #4A154B;
@@ -40,6 +39,7 @@ html {
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s, color 0.3s;
+    margin: 7px 8px 0;
 }
 
 .profile-btn:hover {
@@ -141,7 +141,8 @@ html {
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
-    margin-top: 20px;
+    width: 150px;
+    margin-top: 14px;
 }
 
 .home-container button:hover {

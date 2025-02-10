@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .home-container {
@@ -12,7 +11,7 @@
     justify-content: center;
     text-align: center;
     color: white;
-    min-height: 60vh;
+    min-height: 50vh;
     padding: 0 20px;
 }
 
@@ -26,6 +25,7 @@
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     width: 450px;
+    margin-top: 40px;
 }
 
 .auth-title {
@@ -43,6 +43,7 @@
 
 .auth-form label {
     font-size: 16px;
+    text-align: left;
     margin-bottom: 8px;
     color: #72767d;
 }
@@ -58,8 +59,8 @@
 
 .auth-error-message {
     color: #dc3545;
-    font-size: 14px;
-    margin-top: 8px;
+    font-size: 16px;
+    margin: 5px;
 }
 
 .auth-success-message {
@@ -71,7 +72,6 @@
 .auth-buttons {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
 }
 
 .submit-btn {

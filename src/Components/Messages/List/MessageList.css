@@ -38,6 +38,7 @@
     height: 40px;
     border-radius: 20%;
     margin-right: 10px;
+    object-fit: cover; /* Recorta la imagen manteniendo su proporción */
 }
 
 /* Contenedor de contenido del mensaje */

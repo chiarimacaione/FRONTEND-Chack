@@ -15,7 +15,7 @@ const LoginScreen = () => {
     useEffect(() => {
         const verified = searchParams.get('verified');
         if (verified === 'true') {
-            setSuccessMessage('¡Tu correo ha sido verificado exitosamente! Ahora puedes iniciar sesión.');
+            setSuccessMessage('Your email has been successfully verified! You can now log in.');
         }
     }, [searchParams]);
 
@@ -45,7 +45,7 @@ const LoginScreen = () => {
             console.log('API Response:', data);
     
             if (!response.ok) {
-                throw new Error(data.message || 'Error desconocido al iniciar sesión.');
+                throw new Error(data.message || 'Unknown error while logging in.');
             }
     
             if (!data.data || !data.data.access_token) {
@@ -56,7 +56,7 @@ const LoginScreen = () => {
             navigate('/home');
     
         } catch (err) {
-            setError(err.message || 'Hubo un error al intentar iniciar sesión.');
+            setError(err.message || 'There was an error trying to log in.');
         }
     };
     
@@ -68,34 +68,34 @@ const LoginScreen = () => {
             <div className='home-container'>
                 <h1 className="title-animate-character">Welcome to CHACK</h1>
                 <div className='auth-box'>
-                    <h2 className='auth-title'>Iniciar Sesión</h2>
+                    <h2 className='auth-title'>Login</h2>
                     {successMessage && <p className='auth-success-message'>{successMessage}</p>}
                     {error && <p className='auth-error-message'>{error}</p>}
                     <form className='auth-form' onSubmit={handleSubmit}>
-                        <label htmlFor='email'>Correo electrónico</label>
+                        <label htmlFor='email'>Email</label>
                         <input
                             type='email'
                             name='email'
                             id='email'
-                            placeholder='Correo electrónico'
+                            placeholder='Email'
                             value={formState.email}
                             onChange={handleChangeInput}
                         />
-                        <label htmlFor='password'>Contraseña</label>
+                        <label htmlFor='password'>Password</label>
                         <input
                             type='password'
                             name='password'
                             id='password'
-                            placeholder='Contraseña'
+                            placeholder='Password'
                             value={formState.password}
                             onChange={handleChangeInput}
                         />
                         <div className='auth-buttons'>
-                            <button type='submit' className='submit-btn'>Ingresar</button>
+                            <button type='submit' className='submit-btn'>Enter</button>
                         </div>
                     </form>
                     <div className='auth-links'>
-                        <p>¿No tienes cuenta? <Link to='/register'>Regístrate aquí</Link></p>
+                        <p>Don't have an account? <Link to='/register'>Sign up here</Link></p>
                     </div>
                 </div>
             </div>

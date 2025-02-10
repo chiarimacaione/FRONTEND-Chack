@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import getRandomImage from '../../../../assets/images/getRandomImage'
+import getRandomImage from '../../../../assets/images/getRandomImage.js';
 import { validateWorkspace } from '../../../validations/validationsWS'
 import { validateChannel } from '../../../validations/validationsCH'
 import axios from 'axios'
@@ -13,68 +13,74 @@ const CreateWS = () => {
     const navigate = useNavigate()
 
     const handleCreate = async (event) => {
-        event.preventDefault()
-
-        // Validations
-        const errorWS = validateWorkspace(workspaceName)
+        event.preventDefault();
+    
+        // Validaciones
+        const errorWS = validateWorkspace(workspaceName);
         if (errorWS) {
-            setErrorMessage(errorWS)
-            return
+            setErrorMessage(errorWS);
+            return;
         }
-
-        const errorCH = validateChannel(channelName)
+    
+        const errorCH = validateChannel(channelName);
         if (errorCH) {
-            setErrorMessage(errorCH)
-            return
+            setErrorMessage(errorCH);
+            return;
         }
-
-        // If validations succeed, clear the error message and continue
-        setErrorMessage('')
-
-        // Create new workspace object
+    
+        // Limpiar errores antes de continuar
+        setErrorMessage('');
+    
+        // Crear objeto de workspace
         const newWorkspace = {
             name: workspaceName,
-            img: getRandomImage(),
+            img: getRandomImage() || "/img-WS/Team Hub.jpg",
             channels: [
                 {
                     name: channelName,
-                    messages: []  // Empty array for messages
+                    messages: [],
                 }
             ],
-        }
-
+        };
+    
         try {
-            // Get the token from localStorage
-            const token = localStorage.getItem('token')
-            console.log(token)
+            // Obtener el token del localStorage
+            const token = localStorage.getItem('token');
             if (!token) {
-                console.error('No token found in localStorage')
-                return
+                setErrorMessage('No authentication token found.');
+                return;
             }
-
-            // Send the new workspace data to the backend
+    
+            // Enviar la solicitud al backend
             const response = await axios.post(
-                'http://localhost:3000/workspaces',  // Tu ruta del backend para crear workspaces
+                'http://localhost:3000/workspaces',
                 newWorkspace,
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`,  // Enviar el token para autenticar al usuario
+                        Authorization: `Bearer ${token}`,
                     },
                 }
-            )
-            console.log('response:', response)
-            // Check if the workspace was successfully created
+            );
+    
+            // Si la respuesta es exitosa, redirigir
             if (response.status === 201) {
-                console.log('Workspace created successfully:', response.data)
-                navigate('/home')  // Redirigir a la página principal
+                console.log('Workspace creado:', response.data);
+                navigate('/home');
             } else {
-                setErrorMessage('Error creating workspace. Please try again.')
+                setErrorMessage('Error creating workspace. Please try again.');
             }
         } catch (error) {
-            console.error('Error creating workspace:', error)
-            setErrorMessage('Error creating workspace. Please try again.')
+            console.error('Error creating workspace:', error);
+    
+            // Capturar el mensaje del backend si existe
+            if (error.response && error.response.status === 400) {
+                setErrorMessage(error.response.data.message);
+            } else {
+                setErrorMessage('Error creating workspace. Please try again.');
+            }
         }
-    }
+    };
+    
 
     const handleCancel = (event) => {
         event.preventDefault()

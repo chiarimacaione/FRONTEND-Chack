@@ -8,9 +8,6 @@ body {
     padding: 0;
 }
 
-.workspace-div{
-}
-
 /* Header del workspace */
 .workspace-main {
     display: flex;

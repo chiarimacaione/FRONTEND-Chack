@@ -4,7 +4,7 @@ import useWS from '../../hooks/useWS';
 import './CreateCH.css';
 
 
-const CreateCH = ({ workspaceID, addNewChannel = () => {} }) => {
+const CreateCH = ({ workspaceID, addNewChannel = () => { } }) => {
     const [newChannel, setNewChannel] = useState(false);
     const [channelName, setChannelName] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -13,7 +13,7 @@ const CreateCH = ({ workspaceID, addNewChannel = () => {} }) => {
     const { workspaces, isLoading } = useWS();
 
     const toggleNewChannel = () => {
-        setNewChannel(!newChannel);
+        setNewChannel(!newChannel)
     };
 
     const handleCreateChannel = async (e) => {
@@ -23,13 +23,13 @@ const CreateCH = ({ workspaceID, addNewChannel = () => {} }) => {
             setErrorMessage('Workspaces not loaded yet. Try again.');
             return;
         }
-    
+
         const error = validateChannel(channelName, workspaces);
         if (error) {
             setErrorMessage(error);
             return;
         }
-    
+
         try {
             const token = localStorage.getItem('token'); // Obtener el token
             const response = await fetch(`http://localhost:3000/channels/${workspaceID}`, {
@@ -40,20 +40,19 @@ const CreateCH = ({ workspaceID, addNewChannel = () => {} }) => {
                 },
                 body: JSON.stringify({ name: channelName })
             });
-    
+
             const data = await response.json();
-    
+
             if (!response.ok) {
                 throw new Error(data.message || 'Error creating channel');
             }
-    
-            // Agregar el nuevo canal al estado
-            if (typeof addNewChannel === "function") {
-                addNewChannel(data.data.new_channel);
-            }
-    
-            console.log('Channel created:', data.data.new_channel);            
-    
+
+            // Agregar el nuevo canal al estado del componente padre
+            addNewChannel(data.data.new_channel); // Aquí se pasa el canal creado al padre
+
+
+            console.log('Channel created:', data.data.new_channel);
+
             // Resetear formulario
             setChannelName('');
             setNewChannel(false);
@@ -63,8 +62,8 @@ const CreateCH = ({ workspaceID, addNewChannel = () => {} }) => {
             setErrorMessage(error.message);
         }
     };
-    
-    
+
+
 
     if (isLoading) {
         return <p>Loading channels...</p>;

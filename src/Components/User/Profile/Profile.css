@@ -1,22 +1,50 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #4A154B; /* Fondo para todo el sitio */
+}
+
+/* Ajustes al contenedor de perfil */
 .profile-container {
     text-align: center;
-    background-color: #fff;
+    background-color: #ece6e6;
     padding: 20px;
-    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 50px auto;
+    width: 500px;
+    margin: 0 auto;  /* Centra el perfil horizontalmente */
+    color: #333; /* Color de texto oscuro para contraste */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Toma toda la altura disponible de la pantalla */
 }
 
+
+/* Título */
 .profile-container h2 {
     color: #4A154B;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
+/* Imagen de perfil */
+.profile-image {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Mantiene la imagen proporcionada */
+    margin-bottom: 20px;
+}
+
+/* Información del usuario */
 .profile-container p {
     font-size: 16px;
     margin: 10px 0;
+    color:#333;
 }
 
+/* Botón */
 .profile-container button {
     background-color: #4A154B;
     color: white;
@@ -25,8 +53,52 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 15px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .profile-container button:hover {
     background-color: #611f69;
 }
+
+/* Media Queries para hacer el componente más responsivo */
+@media screen and (max-width: 445px) {
+    .profile-container {
+        padding: 15px;
+        width: 300px;
+    }
+
+    .profile-container h2 {
+        font-size: 20px;
+    }
+
+    .profile-container p {
+        font-size: 14px;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media screen and (min-width:445px) and (max-width:780px) {
+    .profile-container {
+        padding: 20px;
+        width: 400px;
+    }
+
+    .profile-container h2 {
+        font-size: 22px;
+    }
+
+    .profile-container p {
+        font-size: 15px;
+    }
+
+    .profile-image {
+        width: 130px;
+        height: 130px;
+    }
+}
+

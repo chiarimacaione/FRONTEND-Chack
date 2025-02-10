@@ -11,12 +11,16 @@ const MessagesList = ({ messages, channelName }) => {
                 {messages.length > 0 ? (
                     messages.map((message, index) => (
                         <div key={message._id || `message-${index}`} className="message-item">
-                            {/* Mostrar la foto de perfil */}
                             <img
-                                src={message.profilePicture || '/default-avatar.png'}
+                                src={
+                                    message.profilePicture?.includes('http')
+                                        ? message.profilePicture
+                                        : `http://localhost:3000/${message.profilePicture?.replace(/^\/+/, '') || '/public/img-user/You.jpg'}`
+                                }
                                 alt="avatar"
                                 className="message-avatar"
                             />
+
                             <div className="message-content">
                                 <div className="message-header">
                                     <span className="message-author">{message.author}</span>

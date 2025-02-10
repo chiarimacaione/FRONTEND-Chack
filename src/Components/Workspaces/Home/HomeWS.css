@@ -80,6 +80,14 @@
     /* Darker purple on hover */
 }
 
+.no-workspaces {
+    text-align: center;
+    margin-top: 5px;
+    color: #ee5050;
+    font-size: 18px;
+    margin-bottom: 20px;
+
+}
 
 /* Create New Workspace button container */
 .create-workspace-container {

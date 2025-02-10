@@ -39,7 +39,9 @@ const HomeWS = () => {
                 );
               })
             ) : (
-              <h3>No workspaces found. Create one!</h3>
+              <div className='no-workspaces'>
+                              <h3>No workspaces found. Create one!</h3>
+              </div>
             )}
 
 

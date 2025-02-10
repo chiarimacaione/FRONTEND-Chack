@@ -8,22 +8,31 @@ const RegisterScreen = () => {
     const { formState, handleChangeInput } = useForm({ username: '', email: '', password: '', name: '', profilePicture: null });
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            formState.profilePicture = file; // Guardamos el archivo en el estado
+            const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+            
+            if (!allowedTypes.includes(file.type)) {
+                alert("Invalid file type. Please upload a PNG, JPG, or JPEG image.");
+                return;
+            }
+            formState.profilePicture = file;
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!formState.username || !formState.email || !formState.password || !formState.name || !formState.profilePicture) {
-            setError('Todos los campos son obligatorios, incluyendo la foto de perfil.');
+            setError('All fields are required.');
             return;
         }
 
         setIsLoading(true);
+        setError('');
+        setSuccessMessage('');
 
         const formData = new FormData();
         formData.append('username', formState.username);
@@ -40,12 +49,12 @@ const RegisterScreen = () => {
 
             const data = await response.json();
             if (response.ok) {
-                navigate('/login');
+                setSuccessMessage('Registration successful. A verification email has been sent. Please check your mailbox.');
             } else {
-                setError(data.message || 'Error al registrar el usuario.');
+                setError(data.message || 'Error registering user.');
             }
         } catch (err) {
-            setError('Hubo un error al intentar registrarte. Intenta nuevamente.');
+            setError('There was an error trying to register. Please try again.');
         } finally {
             setIsLoading(false);
         }
@@ -56,67 +65,67 @@ const RegisterScreen = () => {
             <div className="home-container">
                 <h1 className="title-animate-character">Welcome to CHACK</h1>
                 <div className="auth-box">
-                    <h2 className="auth-title">Registro</h2>
+                    <h2 className="auth-title">Register</h2>
                     {error && <p className="auth-error-message">{error}</p>}
+                    {successMessage && <p className="auth-success-message">{successMessage}</p>}
                     <form className="auth-form" onSubmit={handleSubmit}>
-                        <label htmlFor="name">Nombre</label>
+                        <label htmlFor="name">Name</label>
                         <input
                             type="text"
                             name="name"
                             id="name"
-                            placeholder="Nombre completo"
+                            placeholder="Full Name"
                             value={formState.name}
                             onChange={handleChangeInput}
                         />
-                        <label htmlFor="username">Usuario</label>
+                        <label htmlFor="username">Username</label>
                         <input
                             type="text"
                             name="username"
                             id="username"
-                            placeholder="Usuario"
+                            placeholder="Username"
                             value={formState.username}
                             onChange={handleChangeInput}
                         />
-                        <label htmlFor="email">Correo electrónico</label>
+                        <label htmlFor="email">Email</label>
                         <input
                             type="email"
                             name="email"
                             id="email"
-                            placeholder="Correo electrónico"
+                            placeholder="Email"
                             value={formState.email}
                             onChange={handleChangeInput}
                         />
-                        <label htmlFor="password">Contraseña</label>
+                        <label htmlFor="password">Password</label>
                         <input
                             type="password"
                             name="password"
                             id="password"
-                            placeholder="Contraseña"
+                            placeholder="Password"
                             value={formState.password}
                             onChange={handleChangeInput}
                         />
-                        <label htmlFor="profilePicture">Foto de perfil</label>
+                        <label htmlFor="profilePicture">Profile Picture</label>
                         <input
                             type="file"
                             name="profilePicture"
                             id="profilePicture"
+                            accept='image/png, image/jpeg, image/jpg'
                             onChange={handleFileChange}
                         />
                         <div className="auth-buttons">
                             <button type="submit" className="submit-btn" disabled={isLoading}>
-                                {isLoading ? 'Cargando...' : 'Registrarse'}
+                                {isLoading ? 'Loading...' : 'Registrarse'}
                             </button>
                         </div>
                     </form>
                     <div className="auth-links">
-                        <p>¿Ya tienes cuenta? <Link to="/">Inicia sesión aquí</Link></p>
+                        <p>Already have an account? <Link to="/">Login here</Link></p>
                     </div>
                 </div>
             </div>
         </div>
     );
 };
-
-
 
 export default RegisterScreen;

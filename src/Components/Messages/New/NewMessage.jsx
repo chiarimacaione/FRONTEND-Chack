@@ -16,7 +16,7 @@ const NewMessage = ({ workspaceId, channelId, updateMessages, channelName }) => 
             const decodedPayload = JSON.parse(atob(base64)); // Decodifica el JSON
             return decodedPayload.id; // Devuelve el ID del usuario desde el payload
         } catch (error) {
-            console.error('Error al decodificar el token:', error)
+            console.error('Error decoding token:', error)
             return null
         }
     }
@@ -41,16 +41,14 @@ const NewMessage = ({ workspaceId, channelId, updateMessages, channelName }) => 
             if (response.data.ok) {
                 const createdMessage = response.data.data;
 
-                console.log('Mensaje recibido:', createdMessage);
-
                 updateMessages((prevMessages) => [...prevMessages, createdMessage]);
             } else {
-                console.error('Error al crear mensaje:', response.data.message);
+                console.error('Error creating message:', response.data.message);
             }
 
             setMessage('');
         } catch (error) {
-            console.error('Error al enviar el mensaje:', error);
+            console.error('Error sending message:', error);
         }
     };
 

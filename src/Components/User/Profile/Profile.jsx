@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../User.css';
+import './Profile.css';
 const Profile = () => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -48,16 +48,18 @@ const Profile = () => {
     return (
         <div className="profile-container">
             <h2>Your Profile</h2>
-            <img 
-    src={user?.profilePicture.startsWith('/') ? `http://localhost:3000${user.profilePicture}` : user.profilePicture} 
-    alt="Profile Picture" 
-    className="profile-image"
-
-/>
-
-            <p><strong>Nombre:</strong> {user?.name}</p>
-            <p><strong>Correo:</strong> {user?.email}</p>
-            <p><strong>Usuario:</strong> {user?.username}</p>
+            <img
+                src={
+                    user?.profilePicture?.includes('http')
+                        ? user.profilePicture
+                        : `http://localhost:3000/${user.profilePicture.replace(/^\/+/, '')}`
+                }
+                alt="Profile Picture"
+                className="profile-image"
+            />
+            <p><strong>Name:</strong> {user?.name}</p>
+            <p><strong>Email:</strong> {user?.email}</p>
+            <p><strong>Username:</strong> {user?.username}</p>
             <button onClick={() => navigate('/home')}>Go Back to Home</button>
         </div>
     );

@@ -80,7 +80,7 @@ const Workspace = () => {
                         <NewMessage
                             workspaceId={workspaceSelected._id}
                             channelId={channelSelected._id}
-                            updateMessages={updateMessages}
+                            updateMessages={setMessages}
                             channelName={channelSelected.name}
                         />
                     </div>
