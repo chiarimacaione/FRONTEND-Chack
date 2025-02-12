@@ -39,6 +39,7 @@ const CreateCH = ({ workspaceID, addNewChannel = () => { } }) => {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
+                credentials: 'include',
                 body: JSON.stringify({ name: channelName })
             });
 
