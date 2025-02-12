@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useForm from '../../../hooks/useForm';
 import { Link, useNavigate } from 'react-router-dom';
 import '../User.css';
+import ENVIROMENT from '../../../config/enviroment.config';
 
 const RegisterScreen = () => {
     const navigate = useNavigate();
@@ -42,7 +43,7 @@ const RegisterScreen = () => {
         formData.append('profilePicture', formState.profilePicture);
 
         try {
-            const response = await fetch('http://localhost:3000/users/register', {
+            const response = await fetch(`${ENVIROMENT.URL_BACKEND}/users/register`, {
                 method: 'POST',
                 body: formData,
             });

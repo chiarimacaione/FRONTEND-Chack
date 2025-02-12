@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { validateChannel } from '../../validations/validationsCH';
 import useWS from '../../hooks/useWS';
 import './CreateCH.css';
+import ENVIROMENT from '../../config/enviroment.config';
 
 
 const CreateCH = ({ workspaceID, addNewChannel = () => { } }) => {
@@ -32,7 +33,7 @@ const CreateCH = ({ workspaceID, addNewChannel = () => { } }) => {
 
         try {
             const token = localStorage.getItem('token'); // Obtener el token
-            const response = await fetch(`http://localhost:3000/channels/${workspaceID}`, {
+            const response = await fetch(`${ENVIROMENT.URL_BACKEND}/channels/${workspaceID}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

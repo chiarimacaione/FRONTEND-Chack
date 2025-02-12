@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './NewMessage.css';
 import { Bold, Italic, Strikethrough, LinkIcon, ListOrdered, ListBulleted, Quote, Code, CodeBlock, SendNow } from '../../../../assets/icons';
 import axios from 'axios'
+import ENVIROMENT from '../../../config/enviroment.config';
 
 const NewMessage = ({ workspaceId, channelId, updateMessages, channelName }) => {
     const [message, setMessage] = useState('');
@@ -36,7 +37,7 @@ const NewMessage = ({ workspaceId, channelId, updateMessages, channelName }) => 
         };
 
         try {
-            const response = await axios.post('http://localhost:3000/api/messages', newMessage);
+            const response = await axios.post(`${ENVIROMENT.URL_BACKEND}/api/messages`, newMessage);
 
             if (response.data.ok) {
                 const createdMessage = response.data.data;

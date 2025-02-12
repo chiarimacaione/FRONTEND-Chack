@@ -3,6 +3,7 @@ import useForm from '../../../hooks/useForm';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext';
 import '../User.css';
+import ENVIROMENT from '../../../config/enviroment.config';
 
 const LoginScreen = () => {
     const { login, isAuthenticatedState } = useContext(AuthContext);
@@ -30,7 +31,7 @@ const LoginScreen = () => {
         }
     
         try {
-            const response = await fetch('http://localhost:3000/users/login', {
+            const response = await fetch(`${ENVIROMENT.URL_BACKEND}/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

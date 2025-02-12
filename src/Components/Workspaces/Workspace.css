@@ -48,6 +48,20 @@ body {
     overflow: hidden;
 }
 
+.generate-invitation-button {
+    background-color: #611f69;
+    border: none;
+    color: #f8f8f8;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.generate-invitation-button:hover {
+    background-color: #b33fc0;
+}
+
 /* Sidebar (Channels) */
 .workspace-container-channels-sidebar {
     position: fixed;
@@ -196,4 +210,90 @@ body {
         position: relative;
     }
 
+}
+
+/* Contenedor para los botones */
+.button-container {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+    align-items: center;
+}
+
+/* Estilos para el botón Exit */
+.exit-button {
+    background-color: #611f69;
+    border: none;
+    color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.exit-button:hover {
+    background-color: #b33fc0;
+}
+
+/* Estilos para el botón Add User */
+.add-user-button {
+    background-color: #611f69;
+    border: none;
+    color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.add-user-button:hover {
+    background-color: #b33fc0;
+}
+
+/* Estilo general para la ventana emergente */
+.swal2-popup {
+    font-size: 16px;  /* Tamaño de fuente estándar */
+    padding: 20px;
+    width: 400px;  /* Ancho por defecto */
+    max-width: 100%;  /* Asegura que no se desborde en pantallas pequeñas */
+    margin: 0 auto;  /* Centrado horizontal */
+}
+
+/* Media Query para pantallas pequeñas (menos de 600px) */
+@media screen and (max-width: 600px) {
+    .swal2-popup {
+        width: 90%;  /* 90% del ancho de la pantalla */
+        font-size: 14px;  /* Tamaño de fuente más pequeño */
+        padding: 15px;  /* Menos espacio alrededor del contenido */
+    }
+
+    .swal2-title {
+        font-size: 18px;  /* Título más grande en pantallas pequeñas */
+    }
+
+    .swal2-content {
+        font-size: 14px;  /* Texto más pequeño */
+    }
+
+    .swal2-actions {
+        font-size: 14px;  /* Botones más pequeños */
+    }
+}
+
+/* Media Query para pantallas medianas (entre 600px y 1024px) */
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+    .swal2-popup {
+        width: 70%;  /* 70% del ancho de la pantalla */
+    }
+
+    .swal2-title {
+        font-size: 20px;  /* Ajustar el tamaño del título */
+    }
+
+    .swal2-content {
+        font-size: 16px;  /* Ajustar el tamaño del texto */
+    }
+
+    .swal2-actions {
+        font-size: 16px;  /* Ajustar el tamaño de los botones */
+    }
 }

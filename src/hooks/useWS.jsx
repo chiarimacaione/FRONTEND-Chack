@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import ENVIROMENT from '../config/enviroment.config';
 
 const useWS = () => {
   const [workspaces, setWorkspaces] = useState([]);
@@ -14,13 +15,13 @@ const useWS = () => {
           return;
         }
 
-        const response = await axios.get('http://localhost:3000/workspaces', {
+        const response = await axios.get(`${ENVIROMENT.URL_BACKEND}/workspaces`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        console.log('API Response:', response.data);
+        console.log('API Response (hook):', response.data);
         setWorkspaces(response.data.data.workspaces || []);
       } catch (error) {
         console.error('Error fetching workspaces:', error);
@@ -41,7 +42,7 @@ const useWS = () => {
         return [];
       }
 
-      const response = await axios.get(`http://localhost:3000/api/messages/${channelId}`, {
+      const response = await axios.get(`${ENVIROMENT.URL_BACKEND}/api/messages/${channelId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

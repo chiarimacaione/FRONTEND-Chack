@@ -1,5 +1,6 @@
 import React from 'react';
 import './MessageList.css'
+import ENVIROMENT from '../../../config/enviroment.config';
 
 const MessagesList = ({ messages, channelName }) => {
     return (
@@ -15,7 +16,7 @@ const MessagesList = ({ messages, channelName }) => {
                                 src={
                                     message.profilePicture?.includes('http')
                                         ? message.profilePicture
-                                        : `http://localhost:3000/${message.profilePicture?.replace(/^\/+/, '') || '/public/img-user/You.jpg'}`
+                                        : `${ENVIROMENT.URL_BACKEND}/${message.profilePicture?.replace(/^\/+/, '') || '/public/img-user/You.jpg'}`
                                 }
                                 alt="avatar"
                                 className="message-avatar"

@@ -5,6 +5,7 @@ import { validateWorkspace } from '../../../validations/validationsWS'
 import { validateChannel } from '../../../validations/validationsCH'
 import axios from 'axios'
 import './CreateWS.css'
+import ENVIROMENT from '../../../config/enviroment.config.js';
 
 const CreateWS = () => {
     const [workspaceName, setWorkspaceName] = useState('')
@@ -53,7 +54,7 @@ const CreateWS = () => {
     
             // Enviar la solicitud al backend
             const response = await axios.post(
-                'http://localhost:3000/workspaces',
+                `${ENVIROMENT.URL_BACKEND}/workspaces`,
                 newWorkspace,
                 {
                     headers: {

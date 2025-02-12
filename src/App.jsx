@@ -17,9 +17,11 @@ function App() {
         <Route path='/' element={<LoginScreen />} />
         <Route path='/login' element={<LoginScreen />} />
         <Route path='/register' element={<RegisterScreen />} />
-        {/* Ruta protegida para el perfil */}
+        {/* Ruta protegida para el usuario */}
         <Route element={<ProtectedRoute />}>
           <Route path='/profile' element={<Profile />} />
+          <Route path='/workspace/:workspace_id/channel/:channel_id/invite' element={<Workspace />} />
+
         </Route>
       </Routes>
     </div>

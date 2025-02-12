@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Profile.css';
+import ENVIROMENT from '../../../config/enviroment.config';
 const Profile = () => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ const Profile = () => {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/users/profile', {
+                const response = await fetch(`${ENVIROMENT.URL_BACKEND}/users/profile`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -52,7 +53,7 @@ const Profile = () => {
                 src={
                     user?.profilePicture?.includes('http')
                         ? user.profilePicture
-                        : `http://localhost:3000/${user.profilePicture.replace(/^\/+/, '')}`
+                        : `${ENVIROMENT.URL_BACKEND}/${user.profilePicture.replace(/^\/+/, '')}`
                 }
                 alt="Profile Picture"
                 className="profile-image"
