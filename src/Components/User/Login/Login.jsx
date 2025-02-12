@@ -36,7 +36,7 @@ const LoginScreen = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
+                
                 body: JSON.stringify({
                     email: formState.email,
                     password: formState.password,

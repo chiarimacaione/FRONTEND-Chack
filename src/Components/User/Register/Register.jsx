@@ -45,7 +45,7 @@ const RegisterScreen = () => {
         try {
             const response = await fetch(`${ENVIROMENT.URL_BACKEND}/users/register`, {
                 method: 'POST',
-                credentials: 'include',
+                
                 body: formData,
             });
 
