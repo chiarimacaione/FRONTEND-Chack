@@ -43,6 +43,8 @@ const RegisterScreen = () => {
         formData.append('profilePicture', formState.profilePicture);
 
         try {
+            console.log('Form Data:', formData);
+            console.log('empezando try del register; POST');
             const response = await fetch(`${ENVIROMENT.URL_BACKEND}/users/register`, {
                 method: 'POST',
                 
