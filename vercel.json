@@ -4,9 +4,5 @@
             "source": "/(.*)",
             "destination": "/"
         }
-    ],
-    "static": {
-        "source": "public",
-        "destination": "/public"
-    }
+    ]
 }
