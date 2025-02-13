@@ -41,10 +41,9 @@ const RegisterScreen = () => {
         formData.append('password', formState.password);
         formData.append('name', formState.name);
         formData.append('profilePicture', formState.profilePicture);
-
         try {
-            console.log('Form Data:', formData);
             console.log('empezando try del register; POST');
+            console.log(ENVIROMENT.URL_BACKEND);
             const response = await fetch(`${ENVIROMENT.URL_BACKEND}/users/register`, {
                 method: 'POST',
                 
@@ -52,6 +51,7 @@ const RegisterScreen = () => {
             });
 
             const data = await response.json();
+            console.log(data)
             if (response.ok) {
                 setSuccessMessage('Registration successful. A verification email has been sent. Please check your mailbox.');
             } else {
