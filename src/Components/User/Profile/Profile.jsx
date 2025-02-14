@@ -27,7 +27,7 @@ const Profile = () => {
                 });
 
                 const data = await response.json();
-                console.log('Profile Data:', data);
+                // console.log('Profile Data:', data);
 
                 if (response.ok) {
                     setUser(data.user)
