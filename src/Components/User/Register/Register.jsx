@@ -116,7 +116,7 @@ const RegisterScreen = () => {
                         />
                         <div className="auth-buttons">
                             <button type="submit" className="submit-btn" disabled={isLoading}>
-                                {isLoading ? 'Loading...' : 'Registrarse'}
+                                {isLoading ? 'Loading...' : 'Register'}
                             </button>
                         </div>
                     </form>
