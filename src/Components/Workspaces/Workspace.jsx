@@ -9,7 +9,7 @@ import ENVIROMENT from '../../config/enviroment.config';
 
 const Workspace = () => {
     const { workspace_id, channel_id } = useParams();
-    const { isLoading, workspaces, getMessages } = useWS();
+    const { isLoading, workspaces, getMessages, fetchWorkspaces } = useWS();
     const [messages, setMessages] = useState([]);
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [isInviting, setIsInviting] = useState(false);
@@ -153,7 +153,7 @@ const Workspace = () => {
                         ))}
                     </ul>
                     <span className="add-channel">
-                        + <CreateCH workspaceID={workspaceSelected._id} />
+                        + <CreateCH workspaceID={workspaceSelected._id} fetchWorkspaces={fetchWorkspaces} />
                     </span>
                 </div>
     

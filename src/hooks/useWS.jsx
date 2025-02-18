@@ -6,30 +6,30 @@ const useWS = () => {
   const [workspaces, setWorkspaces] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchWorkspaces = async () => {
-      try {
-        const token = localStorage.getItem('token'); // Obtener el token
-        if (!token) {
-          console.error('No token found in localStorage', token);
-          return;
-        }
-
-        const response = await axios.get(`${ENVIROMENT.URL_BACKEND}/workspaces`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        console.log('API Response (hook):', response.data);
-        setWorkspaces(response.data.data.workspaces || []);
-      } catch (error) {
-        console.error('Error fetching workspaces:', error);
-      } finally {
-        setIsLoading(false);
+  const fetchWorkspaces = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Obtener el token
+      if (!token) {
+        console.error('No token found in localStorage', token);
+        return;
       }
-    };
 
+      const response = await axios.get(`${ENVIROMENT.URL_BACKEND}/workspaces`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log('API Response (hook):', response.data);
+      setWorkspaces(response.data.data.workspaces || []);
+    } catch (error) {
+      console.error('Error fetching workspaces:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchWorkspaces();
   }, []);
 
@@ -59,7 +59,7 @@ const useWS = () => {
     }
   };
 
-  return { isLoading, workspaces, getMessages };
+  return { isLoading, workspaces, getMessages, fetchWorkspaces };
 };
 
 export default useWS;

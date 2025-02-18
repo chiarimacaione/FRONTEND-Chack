@@ -5,7 +5,7 @@ import './CreateCH.css';
 import ENVIROMENT from '../../config/enviroment.config';
 
 
-const CreateCH = ({ workspaceID, addNewChannel = () => { } }) => {
+const CreateCH = ({ workspaceID, fetchWorkspaces }) => {
     const [newChannel, setNewChannel] = useState(false);
     const [channelName, setChannelName] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -50,7 +50,7 @@ const CreateCH = ({ workspaceID, addNewChannel = () => { } }) => {
             }
 
             // Agregar el nuevo canal al estado del componente padre
-            addNewChannel(data.data.new_channel); // Aquí se pasa el canal creado al padre
+            fetchWorkspaces();
 
 
             console.log('Channel created:', data.data.new_channel);
